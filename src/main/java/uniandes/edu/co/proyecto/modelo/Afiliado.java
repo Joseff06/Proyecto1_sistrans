@@ -5,8 +5,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import java.util.List;
+
 @Entity
-@Table(name="Afiliados")
+@Table(name="Afiliado")
 public class Afiliado {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -19,6 +22,10 @@ public class Afiliado {
     private String tipoAfiliado;
     private String parentesco;
     private String correo;
+
+    @OneToMany(mappedBy = "afiliado")
+    private List<Cita> citas;
+
     public Afiliado(){;}
     // Constructor
     public Afiliado(String tipoDocumento, String numeroDocumento, String nombre, String fechaNacimiento, String direccion, String telefono, String tipoAfiliado, String parentesco, String correo) {

@@ -1,29 +1,52 @@
 package uniandes.edu.co.proyecto.modelo;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.OneToMany;
+import java.util.List;
+
+@Entity
+@Table(name="Eps")
 public class Eps {
-    private String nitEPS;
-    private String nombreEPS;
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private int idEps;
+    private String nombreEps;
+
+    @OneToMany(mappedBy = "eps")
+    private List<Ips> ipsList;
 
     // Constructor
-    public Eps(String nitEPS, String nombreEPS) {
-        this.nitEPS = nitEPS;
-        this.nombreEPS = nombreEPS;
+    public Eps(int idEps, String nombreEps) {
+        this.idEps = idEps;
+        this.nombreEps = nombreEps;
     }
 
     // Getters and Setters
-    public String getNitEPS() {
-        return nitEPS;
+    public int getIdEps() {
+        return idEps;
     }
 
-    public void setNitEPS(String nitEPS) {
-        this.nitEPS = nitEPS;
+    public void setIdEps(int idEps) {
+        this.idEps = idEps;
     }
 
-    public String getNombreEPS() {
-        return nombreEPS;
+    public String getNombreEps() {
+        return nombreEps;
     }
 
-    public void setNombreEPS(String nombreEPS) {
-        this.nombreEPS = nombreEPS;
+    public void setNombreEps(String nombreEps) {
+        this.nombreEps = nombreEps;
+    }
+
+    public List<Ips> getIpsList() {
+        return ipsList;
+    }
+
+    public void setIpsList(List<Ips> ipsList) {
+        this.ipsList = ipsList;
     }
 }

@@ -1,9 +1,29 @@
 package uniandes.edu.co.proyecto.modelo;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.OneToMany;
+import java.util.List;
+
+@Entity
+@Table(name="ServicioDeSalud")
 public class ServicioDeSalud {
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private String codigo;
     private String nombre;
     private String descripcion;
+
+    @OneToMany(mappedBy = "servicioDeSalud")
+    private List<Disponibilidad> disponibilidades;
+
+    @OneToMany(mappedBy = "servicioDeSalud")
+    private List<OrdenDeServicio> ordenesDeServicio;
+
+    public ServicioDeSalud(){;}
 
     // Constructor
     public ServicioDeSalud(String codigo, String nombre, String descripcion) {

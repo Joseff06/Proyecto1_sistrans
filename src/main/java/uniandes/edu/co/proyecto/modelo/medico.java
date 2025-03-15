@@ -1,19 +1,36 @@
 package uniandes.edu.co.proyecto.modelo;
 
-public class medico {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.OneToMany;
+import java.util.List;
+
+@Entity
+@Table(name="Medico")
+public class Medico {
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int registroMedico;
     private String nombre;
     private String tipoDocumento;
     private String numeroDocumento;
-    private String especialidad;
+    private int idEspecialidad;
+
+    @OneToMany(mappedBy = "Medico")
+    private List<Disponibilidad> disponibilidades;
+
+    public Medico(){;}
 
     // Constructor
-    public medico(int registroMedico, String nombre, String tipoDocumento, String numeroDocumento, String especialidad) {
+    public Medico(int registroMedico, String nombre, String tipoDocumento, String numeroDocumento, int idEspecialidad) {
         this.registroMedico = registroMedico;
         this.nombre = nombre;
         this.tipoDocumento = tipoDocumento;
         this.numeroDocumento = numeroDocumento;
-        this.especialidad = especialidad;
+        this.idEspecialidad = idEspecialidad;
     }
 
     // Getters and Setters
@@ -49,11 +66,19 @@ public class medico {
         this.numeroDocumento = numeroDocumento;
     }
 
-    public String getEspecialidad() {
-        return especialidad;
+    public int getIdEspecialidad() {
+        return idEspecialidad;
     }
 
-    public void setEspecialidad(String especialidad) {
-        this.especialidad = especialidad;
+    public void setIdEspecialidad(int idEspecialidad) {
+        this.idEspecialidad = idEspecialidad;
+    }
+
+    public List<Disponibilidad> getDisponibilidades() {
+        return disponibilidades;
+    }
+
+    public void setDisponibilidades(List<Disponibilidad> disponibilidades) {
+        this.disponibilidades = disponibilidades;
     }
 }
