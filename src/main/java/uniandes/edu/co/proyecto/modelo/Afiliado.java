@@ -35,8 +35,8 @@ public class Afiliado {
         this.contribuyente = contribuyente;
         this.correo = correo;
     }
-
-    // Getters and Setters
+ 
+    // Getters and   Setters
     public int getNumDoc() {
         return numDoc;
     }
