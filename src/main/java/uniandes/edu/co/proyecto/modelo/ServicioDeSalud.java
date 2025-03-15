@@ -23,6 +23,9 @@ public class ServicioDeSalud {
     @OneToMany(mappedBy = "servicioDeSalud")
     private List<OrdenDeServicio> ordenesDeServicio;
 
+    @OneToMany(mappedBy = "pk.servicioDeSalud")
+    private List<IpsServicioDeSalud> ipsServicioDeSalud;
+
     public ServicioDeSalud(){;}
 
     // Constructor

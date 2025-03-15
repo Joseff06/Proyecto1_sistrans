@@ -19,8 +19,11 @@ public class Medico {
     private String numeroDocumento;
     private int idEspecialidad;
 
-    @OneToMany(mappedBy = "Medico")
+    @OneToMany(mappedBy = "medico")
     private List<Disponibilidad> disponibilidades;
+
+    @OneToMany(mappedBy = "pk.medico")
+    private List<MedicoIps> medicoIps;
 
     public Medico(){;}
 
@@ -80,5 +83,13 @@ public class Medico {
 
     public void setDisponibilidades(List<Disponibilidad> disponibilidades) {
         this.disponibilidades = disponibilidades;
+    }
+
+    public List<MedicoIps> getMedicoIps() {
+        return medicoIps;
+    }
+
+    public void setMedicoIps(List<MedicoIps> medicoIps) {
+        this.medicoIps = medicoIps;
     }
 }

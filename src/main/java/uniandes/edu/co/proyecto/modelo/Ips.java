@@ -25,6 +25,12 @@ public class Ips {
     @OneToMany(mappedBy = "ips")
     private List<Cita> citas;
 
+    @OneToMany(mappedBy = "pk.ips")
+    private List<MedicoIps> medicoIps;
+
+    @OneToMany(mappedBy = "pk.ips")
+    private List<IpsServicioDeSalud> ipsServicioDeSalud;
+
     public Ips(){;}
 
     // Constructor
@@ -91,5 +97,21 @@ public class Ips {
 
     public void setCitas(List<Cita> citas) {
         this.citas = citas;
+    }
+
+    public List<MedicoIps> getMedicoIps() {
+        return medicoIps;
+    }
+
+    public void setMedicoIps(List<MedicoIps> medicoIps) {
+        this.medicoIps = medicoIps;
+    }
+
+    public List<IpsServicioDeSalud> getIpsServicioDeSalud() {
+        return ipsServicioDeSalud;
+    }
+
+    public void setIpsServicioDeSalud(List<IpsServicioDeSalud> ipsServicioDeSalud) {
+        this.ipsServicioDeSalud = ipsServicioDeSalud;
     }
 }
