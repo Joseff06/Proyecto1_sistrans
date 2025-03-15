@@ -12,6 +12,7 @@ import java.util.Collection;
 
 public interface OrdenDeServicioRepository extends JpaRepository<OrdenDeServicio, Integer> {
 
+    
     @Query(value = "SELECT * FROM OrdenDeServicio", nativeQuery = true)
     Collection<OrdenDeServicio> findAllOrdenesDeServicio();
 
