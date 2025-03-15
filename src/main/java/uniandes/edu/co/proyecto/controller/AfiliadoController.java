@@ -31,15 +31,16 @@ public class AfiliadoController {
     public ResponseEntity<String> saveAfiliado(@RequestBody Afiliado afiliado) {
         try {
             afiliadoRepository.insertarAfiliado(
-                afiliado.getTipoDocumento(),
-                afiliado.getNumeroDocumento(),
+                afiliado.getTipoDoc(),
+                afiliado.getNumDoc(),
                 afiliado.getNombre(),
                 afiliado.getFechaNacimiento(),
                 afiliado.getDireccion(),
                 afiliado.getTelefono(),
                 afiliado.getTipoAfiliado(),
                 afiliado.getParentesco(),
-                afiliado.getCorreo()
+                afiliado.getCorreo(),
+                afiliado.getContribuyente()
             );
             return new ResponseEntity<>("Afiliado creado exitosamente", HttpStatus.CREATED);
         } catch (Exception e) {
@@ -48,18 +49,20 @@ public class AfiliadoController {
     }
 
     @PostMapping("/{id}/edit/save")
-    public ResponseEntity<String> updateAfiliado(@PathVariable("id") String id, @RequestBody Afiliado afiliado) {
+    public ResponseEntity<String> updateAfiliado(@PathVariable("id") int id, @RequestBody Afiliado afiliado) {
         try {
             afiliadoRepository.actualizarAfiliado(
                 id,
-                afiliado.getTipoDocumento(),
+                afiliado.getTipoDoc(),
+                afiliado.getNumDoc(),
                 afiliado.getNombre(),
                 afiliado.getFechaNacimiento(),
                 afiliado.getDireccion(),
                 afiliado.getTelefono(),
                 afiliado.getTipoAfiliado(),
                 afiliado.getParentesco(),
-                afiliado.getCorreo()
+                afiliado.getCorreo(),
+                afiliado.getContribuyente()
             );
             return new ResponseEntity<>("Afiliado actualizado exitosamente", HttpStatus.OK);
         } catch (Exception e) {
@@ -68,7 +71,7 @@ public class AfiliadoController {
     }
 
     @GetMapping("/{id}/delete")
-    public ResponseEntity<String> deleteAfiliado(@PathVariable("id") String id) {
+    public ResponseEntity<String> deleteAfiliado(@PathVariable("id") int id) {
         try {
             afiliadoRepository.eliminarAfiliado(id);
             return new ResponseEntity<>("Afiliado eliminado exitosamente", HttpStatus.OK);

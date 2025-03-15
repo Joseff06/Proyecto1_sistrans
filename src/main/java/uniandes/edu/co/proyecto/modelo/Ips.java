@@ -4,8 +4,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import java.util.List;
 
 @Entity
@@ -19,6 +21,10 @@ public class Ips {
     private String telefono;
     private int idEps;
 
+    @ManyToOne
+    @JoinColumn(name = "idEps", insertable = false, updatable = false)
+    private Eps eps;
+
     @OneToMany(mappedBy = "ips")
     private List<Disponibilidad> disponibilidades;
 
@@ -31,7 +37,7 @@ public class Ips {
     @OneToMany(mappedBy = "pk.ips")
     private List<IpsServicioDeSalud> ipsServicioDeSalud;
 
-    public Ips(){;}
+    public Ips() {}
 
     // Constructor
     public Ips(String nitIPS, String nombreIPS, String direccion, String telefono, int idEps) {
@@ -81,6 +87,14 @@ public class Ips {
 
     public void setIdEps(int idEps) {
         this.idEps = idEps;
+    }
+
+    public Eps getEps() {
+        return eps;
+    }
+
+    public void setEps(Eps eps) {
+        this.eps = eps;
     }
 
     public List<Disponibilidad> getDisponibilidades() {
