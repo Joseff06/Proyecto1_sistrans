@@ -27,12 +27,32 @@ public class DisponibilidadController {
         }
     }
 
+    @GetMapping("/consultar")
+    public ResponseEntity<Collection<Disponibilidad>> consultarDisponibilidad(@RequestParam int codigoServicio) {
+        try {
+            Collection<Disponibilidad> disponibilidades = disponibilidadRepository.consultarDisponibilidad(codigoServicio);
+            return ResponseEntity.ok(disponibilidades);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @PostMapping("/agendar")
+    public ResponseEntity<String> agendarServicio(@RequestParam int idDisponibilidad, @RequestParam int idOrdenServicio) {
+        try {
+            disponibilidadRepository.agendarServicio(idDisponibilidad, idOrdenServicio);
+            return new ResponseEntity<>("Servicio agendado exitosamente", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al agendar el servicio", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PostMapping("/new/save")
     public ResponseEntity<String> saveDisponibilidad(@RequestBody Disponibilidad disponibilidad) {
         try {
             disponibilidadRepository.insertarDisponibilidad(
                 disponibilidad.getFechaHora(),
-                disponibilidad.getEstadoDisponibilidad(),
+                disponibilidad.isEstadoDisponibilidad(), // Cambié getEstadoDisponibilidad() a isEstadoDisponibilidad() para boolean
                 disponibilidad.getMedico().getRegistroMedico(),
                 disponibilidad.getIps().getNitIPS(),
                 disponibilidad.getServicioDeSalud().getCodigo()
@@ -49,7 +69,7 @@ public class DisponibilidadController {
             disponibilidadRepository.actualizarDisponibilidad(
                 id,
                 disponibilidad.getFechaHora(),
-                disponibilidad.getEstadoDisponibilidad(),
+                disponibilidad.isEstadoDisponibilidad(), // Cambié getEstadoDisponibilidad() a isEstadoDisponibilidad() para boolean
                 disponibilidad.getMedico().getRegistroMedico(),
                 disponibilidad.getIps().getNitIPS(),
                 disponibilidad.getServicioDeSalud().getCodigo()

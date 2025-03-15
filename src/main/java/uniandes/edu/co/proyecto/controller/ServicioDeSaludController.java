@@ -20,7 +20,7 @@ public class ServicioDeSaludController {
     @GetMapping
     public ResponseEntity<Collection<ServicioDeSalud>> getServiciosDeSalud() {
         try {
-            Collection<ServicioDeSalud> serviciosDeSalud = servicioDeSaludRepository.findAll();
+            Collection<ServicioDeSalud> serviciosDeSalud = servicioDeSaludRepository.findAllServiciosDeSalud();
             return ResponseEntity.ok(serviciosDeSalud);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

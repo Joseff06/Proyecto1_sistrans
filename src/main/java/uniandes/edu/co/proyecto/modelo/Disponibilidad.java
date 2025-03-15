@@ -14,7 +14,7 @@ public class Disponibilidad {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int idDisponibilidad;
     private String fechaHora;
-    private String estadoDisponibilidad;
+    private boolean estadoDisponibilidad;
 
     @ManyToOne
     private Medico medico;
@@ -26,7 +26,7 @@ public class Disponibilidad {
     private ServicioDeSalud servicioDeSalud;
 
     // Constructor
-    public Disponibilidad(int idDisponibilidad, String fechaHora, String estadoDisponibilidad, Medico medico, Ips ips, ServicioDeSalud servicioDeSalud) {
+    public Disponibilidad(int idDisponibilidad, String fechaHora, boolean estadoDisponibilidad, Medico medico, Ips ips, ServicioDeSalud servicioDeSalud) {
         this.idDisponibilidad = idDisponibilidad;
         this.fechaHora = fechaHora;
         this.estadoDisponibilidad = estadoDisponibilidad;
@@ -52,11 +52,11 @@ public class Disponibilidad {
         this.fechaHora = fechaHora;
     }
 
-    public String getEstadoDisponibilidad() {
+    public boolean isEstadoDisponibilidad() {
         return estadoDisponibilidad;
     }
 
-    public void setEstadoDisponibilidad(String estadoDisponibilidad) {
+    public void setEstadoDisponibilidad(boolean estadoDisponibilidad) {
         this.estadoDisponibilidad = estadoDisponibilidad;
     }
 

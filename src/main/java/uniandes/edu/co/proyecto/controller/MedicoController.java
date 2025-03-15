@@ -31,8 +31,9 @@ public class MedicoController {
     public ResponseEntity<String> saveMedico(@RequestBody Medico medico) {
         try {
             medicoRepository.insertarMedico(
-                medico.getNombre(),
+                medico.getRegistroMedico(),
                 medico.getTipoDocumento(),
+                medico.getNombre(),
                 medico.getNumeroDocumento(),
                 medico.getIdEspecialidad()
             );
@@ -47,8 +48,8 @@ public class MedicoController {
         try {
             medicoRepository.actualizarMedico(
                 id,
-                medico.getNombre(),
                 medico.getTipoDocumento(),
+                medico.getNombre(),
                 medico.getNumeroDocumento(),
                 medico.getIdEspecialidad()
             );

@@ -37,9 +37,9 @@ public class IpsController {
                 ips.getTelefono(),
                 ips.getIdEps()
             );
-            return new ResponseEntity<>("Ips creada exitosamente", HttpStatus.CREATED);
+            return new ResponseEntity<>("IPS creada exitosamente", HttpStatus.CREATED);
         } catch (Exception e) {
-            return new ResponseEntity<>("Error al crear la ips", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Error al crear la IPS", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -53,9 +53,9 @@ public class IpsController {
                 ips.getTelefono(),
                 ips.getIdEps()
             );
-            return new ResponseEntity<>("Ips actualizada exitosamente", HttpStatus.OK);
+            return new ResponseEntity<>("IPS actualizada exitosamente", HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("Error al actualizar la ips", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Error al actualizar la IPS", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -63,9 +63,19 @@ public class IpsController {
     public ResponseEntity<String> deleteIps(@PathVariable("id") String id) {
         try {
             ipsRepository.eliminarIps(id);
-            return new ResponseEntity<>("Ips eliminada exitosamente", HttpStatus.OK);
+            return new ResponseEntity<>("IPS eliminada exitosamente", HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("Error al eliminar la ips", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Error al eliminar la IPS", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/{id}/asignarServicio")
+    public ResponseEntity<String> asignarServicio(@PathVariable("id") String id, @RequestParam String codigoServicio) {
+        try {
+            ipsRepository.asignarServicio(id, codigoServicio);
+            return new ResponseEntity<>("Servicio asignado exitosamente a la IPS", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al asignar el servicio a la IPS", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

@@ -20,13 +20,13 @@ public interface MedicoRepository extends JpaRepository<Medico, Integer> {
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Medico (registroMedico, nombre, tipoDocumento, numeroDocumento, idEspecialidad) VALUES (nextval('medico_sequence'), :nombre, :tipoDocumento, :numeroDocumento, :idEspecialidad)", nativeQuery = true)
-    void insertarMedico(@Param("nombre") String nombre, @Param("tipoDocumento") String tipoDocumento, @Param("numeroDocumento") String numeroDocumento, @Param("idEspecialidad") int idEspecialidad);
+    @Query(value = "INSERT INTO Medico (registroMedico, tipoDoc, nombre, numDocumento, idEspecialidad) VALUES (:registroMedico, :tipoDoc, :nombre, :numDocumento, :idEspecialidad)", nativeQuery = true)
+    void insertarMedico(@Param("registroMedico") int registroMedico, @Param("tipoDoc") String tipoDoc, @Param("nombre") String nombre, @Param("numDocumento") String numDocumento, @Param("idEspecialidad") int idEspecialidad);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Medico SET nombre = :nombre, tipoDocumento = :tipoDocumento, numeroDocumento = :numeroDocumento, idEspecialidad = :idEspecialidad WHERE registroMedico = :id", nativeQuery = true)
-    void actualizarMedico(@Param("id") int id, @Param("nombre") String nombre, @Param("tipoDocumento") String tipoDocumento, @Param("numeroDocumento") String numeroDocumento, @Param("idEspecialidad") int idEspecialidad);
+    @Query(value = "UPDATE Medico SET tipoDoc = :tipoDoc, nombre = :nombre, numDocumento = :numDocumento, idEspecialidad = :idEspecialidad WHERE registroMedico = :id", nativeQuery = true)
+    void actualizarMedico(@Param("id") int id, @Param("tipoDoc") String tipoDoc, @Param("nombre") String nombre, @Param("numDocumento") String numDocumento, @Param("idEspecialidad") int idEspecialidad);
 
     @Modifying
     @Transactional
