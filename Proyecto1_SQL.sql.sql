@@ -59,17 +59,16 @@ ALTER TABLE MEDICO ADD CONSTRAINT uq_medico_numdoc UNIQUE(numDocumento);
 -- 5. Tabla IPS: Instituciones Prestadoras de Salud (hospitales, clínicas).
 --    Almacena las IPS y la EPS a la que pertenece cada una. PK = idIps. FK hacia EPS.
 CREATE TABLE IPS (
-    idIps         NUMBER(5)   CONSTRAINT pk_ips PRIMARY KEY,   -- Identificador de la IPS (PK)
-    nombreIps     VARCHAR2(100)   NOT NULL,                    -- Nombre de la IPS
-    direccionIps  VARCHAR2(150)   NOT NULL,                    -- Dirección de la IPS
-    telefonoIps   VARCHAR2(20)    NOT NULL,                    -- Teléfono de contacto
-    fkEps         NUMBER(5)       NOT NULL                     -- EPS a la que está asociada la IPS (FK a EPS)
+    nitIPS         VARCHAR2(50)   CONSTRAINT pk_ips PRIMARY KEY,   -- Identificador de la IPS (PK)
+    nombreIPS     VARCHAR2(100)   NOT NULL,                    -- Nombre de la IPS
+    direccion     VARCHAR2(150)   NOT NULL,                    -- Dirección de la IPS
+    telefono      VARCHAR2(20)    NOT NULL,                    -- Teléfono de contacto
+    idEps         NUMBER(5)       NOT NULL                     -- EPS a la que está asociada la IPS (FK a EPS)
 );
 -- Clave foránea: la IPS debe referenciar una EPS existente.
 ALTER TABLE IPS 
-  ADD CONSTRAINT fk_ips_eps FOREIGN KEY (fkEps) 
+  ADD CONSTRAINT fk_ips_eps FOREIGN KEY (idEps) 
       REFERENCES EPS(numEps);
-
 -- 6. Tabla DISPONIBILIDAD: Disponibilidad de servicios por parte de un médico en cierta fecha.
 --    Registra que un médico ofrece un determinado servicio en una fecha dada y su estado (disponible/ocupado).
 --    PK = idDisponibilidad.
